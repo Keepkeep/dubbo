@@ -10,7 +10,7 @@
 - Eclipse 
 - JDK：版本1.6或更高版本 
 - Maven：版本3或更高
-- Tomca：版本7或更高
+- Tomcat：版本7或更高
 
 ### 入门 消费者Maven Pom配置代码
 ```XML
