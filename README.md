@@ -6,6 +6,7 @@
 ![](http://dubbo.io/images//dubbo-architecture.png)
 
 ## 环境要求
+- Linux 环境下配置好Zookeeper和Dubbo也可Window下配置 本次测试基于CentOS 7.4版本
 - Eclipse 
 - JDK：版本1.6或更高版本 
 - Maven：版本3或更高
