@@ -5,7 +5,42 @@
 
 ![](http://dubbo.io/images//dubbo-architecture.png)
 
-### 入门 消费者配置代码
+## 环境要求
+- Eclipse 
+- JDK：版本1.6或更高版本 
+- Maven：版本3或更高
+- Tomca：版本7或更高
+
+### 入门 消费者Maven Pom配置代码
+```XML
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>demo.dubbo</groupId>
+	<artifactId>calcclient</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.3.10.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.5.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.101tec</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>0.10</version>
+		</dependency>
+	</dependencies>
+</project>
+```
+### 入门 消费者 XML配置代码
 ```XML
  <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
