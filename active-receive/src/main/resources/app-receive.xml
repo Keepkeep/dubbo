@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:amq="http://activemq.apache.org/schema/core"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+		<!-- 配置链接-->
+  <amq:connectionFactory id="amqConnectionFactory"  brokerURL="tcp://192.168.1.104:61616"  />
+  <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+  		<constructor-arg ref="amqConnectionFactory"></constructor-arg>
+  		<property name="sessionCacheSize" value="100" />
+  </bean>
+    <!-- 消息目的地址 点对点  队列 -->
+  <bean id="helloDest" class="org.apache.activemq.command.ActiveMQQueue">
+  		<constructor-arg value="queue/hello" />
+  </bean>
+ 
+   <!-- 消息目的地址 发布/订阅  主题 -->
+ <!--  <bean id="helloDest" class="org.apache.activemq.command.ActiveMQTopic">
+  	<constructor-arg value="topic/hello" />
+  </bean> -->
+    <!-- 消息的消费者  -->
+  <bean id="receiveListener" class="demo.active.active_revice.MessageReceiveListener" />
+  <!-- 配置消息监听容器，随时接收消息 -->
+  <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+  	<property name="connectionFactory" ref="connectionFactory" />
+  	<property name="destination" ref="helloDest" />
+  	<property name="messageListener" ref="receiveListener" />
+  </bean>
+</beans>
